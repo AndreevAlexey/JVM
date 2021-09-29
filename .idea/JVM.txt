@@ -1,33 +1,33 @@
-`public class JvmComprehension {``
+public class JvmComprehension {
 	Подгрузка класса в Metaspace через ClassLoader(Application)
 
 
-    `public static void main(String[] args) {``
-	В область памяти stack добавился новый frame для main()
-        `int i = 1;                      // 1`
-		Примитив, добавился в stack со значением = 1 во frame для main()
-        `Object o = new Object();        // 2`
-		В области памяти heap создается объект Object
-		В stack frame для main() добавился o , в качестве значения ссылка на объект в heap
-        `Integer ii = 2;                 // 3`
-		В области памяти heap создается объект Integer
-		В stack добавился ii frame для main(), в качестве значения ссылка на объект в heap
-        `printAll(o, i, ii);             // 4`
+    public static void main(String[] args) {
+	В область памяти stack добавился новый frame для main()	
+        int i = 1;                      // 1
+		Примитив, добавился в stack со значением = 1 во frame для main()	
+        Object o = new Object();        // 2
+		В области памяти heap создается объект Object 
+		В stack frame для main() добавился o , в качестве значения ссылка на объект в heap 
+        Integer ii = 2;                 // 3
+		В области памяти heap создается объект Integer 
+		В stack добавился ii frame для main(), в качестве значения ссылка на объект в heap 
+        printAll(o, i, ii);             // 4
 		В область памяти stack добавился новый frame для printAll
 		В stack frame для printAll добавился o с ссылкой на созданный объект Object в heap // 2
 		В stack frame для printAll добавился примитив i = 1
 		В stack frame для printAll добавился ii с ссылкой на созданный объект Integer в heap // 3
-        `System.out.println("finished"); // 7`
+        System.out.println("finished"); // 7
 		В область памяти stack добавился новый frame для println
 		В области памяти heap создается объект String
 		В stack frame для println добавилась ссылка на созданный объекты String
     }
 
-    `private static void printAll(Object o, int i, Integer ii) {``
-        `Integer uselessVar = 700;                   // 5`
+    private static void printAll(Object o, int i, Integer ii) {
+        Integer uselessVar = 700;                   // 5
 		В области памяти heap создается объект Integer
-		В stack frame для printAll добавился uselessVar с ссылкой на созданный объект Integer в heap
-        `System.out.println(o.toString() + i + ii);  // 6`
+		В stack frame для printAll добавился uselessVar с ссылкой на созданный объект Integer в heap 
+        System.out.println(o.toString() + i + ii);  // 6
 		В область памяти stack добавился новый frame для println
 		В области памяти heap создается 3 объекта String
 		В stack frame для println добавились 3 ссылки на созданные объекты String
